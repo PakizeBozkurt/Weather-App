@@ -13,10 +13,9 @@ script.get("/", function (req, res) {
       const weatherData = JSON.parse(data);
       const temp = weatherData.main.temp;
       const weatherDesc = weatherData.weather[0].description;
-      res.send("The temprature in London is " + temp + "degrees Celcius.")
+      res.send("<h1>The temprature in London is " + temp + "degrees Celcius.</h1>")
     });
   });
-  res.send("Server is up and runing.");
 });
 
 script.listen(3000, function () {
