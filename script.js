@@ -2,18 +2,18 @@ const express = require("express");
 const https = require("https");
 const bodyParser = require("body-parser");
 
-const script = express();
+const app = express();
 
-script.use(bodyParser.urlencoded({extended: true}));
+app.use(bodyParser.urlencoded({extended: true}));
 
-script.get("/", function (req, res) {
+app.get("/", function (req, res) {
 res.sendFile(__dirname + "/index.html");
   });
 
-  script.post("/", function(req, res){
+  app.post("/", function(req, res){
     
     const query = req.body.cityName;
-    const apiKey = "e72ca729af228beabd5d20e3b7749713";
+    const apiKey = "1bdb57b06bc57a37ef5c6163598f2ca1";
     const unit = "metric";
     const url =
       "https://api.openweathermap.org/data/2.5/weather?q=" +
@@ -22,6 +22,7 @@ res.sendFile(__dirname + "/index.html");
       apiKey +
       "&units=" +
       unit;
+      
     https.get(url, function (response) {
       console.log(response.statusCode);
 
@@ -41,6 +42,6 @@ res.sendFile(__dirname + "/index.html");
     });
   })
 
-script.listen(3000, function () {
+app.listen(3000, function () {
   console.log("Server is running on port 3000");
 });
